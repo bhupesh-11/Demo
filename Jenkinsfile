@@ -1,26 +1,26 @@
 pipeline {
   agent any
   stages {
-    stage('Test') {
+    stage('Build') {
       parallel {
-        stage('Test') {
+        stage('Build') {
           steps {
-            echo 'Hello World'
+            bat 'dir'
           }
         }
 
-        stage('error') {
+        stage('build date') {
           steps {
-            sleep 5
+            bat 'echo %date%'
           }
         }
 
       }
     }
 
-    stage('Build') {
+    stage('Test') {
       steps {
-        bat 'bat echo %date%'
+        echo 'Testing'
       }
     }
 
