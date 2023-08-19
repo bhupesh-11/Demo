@@ -1,33 +1,36 @@
 pipeline {
-    agent any
-    environment {
-        name = 'Bhupesh'
+  agent any
+  stages {
+    stage('Hello') {
+      steps {
+        echo 'Hello World'
+      }
     }
-    parameters {
-     string(name: 'Ananya',defaultValue: 'Patil', description: 'who are you ?')
+
+    stage('Env') {
+      input {
+        message 'Are you sure'
+        id 'Yes Continue'
+      }
+      steps {
+        bat 'echo %ananya%'
+      }
     }
-    stages {
-        stage('Hello') {
-            steps {
-                echo 'Hello World'
-            }
-        }
-        stage('Env') {
-            input {
-                message "Are you sure"
-                ok "Yes Continue"
-            }
-            steps {
-                bat  'echo %ananya%'
-            }
-        }
-         stage('Prod') {
-            environment {
+
+    stage('Prod') {
+      environment {
         username = 'Prod'
+      }
+      steps {
+        bat 'echo %username%'
+      }
     }
-            steps {
-                bat  'echo %username%'
-            }
-        }
-    }
+
+  }
+  environment {
+    name = 'Bhupesh'
+  }
+  parameters {
+    string(name: 'Ananya', defaultValue: 'Patil', description: 'who are you ?')
+  }
 }
