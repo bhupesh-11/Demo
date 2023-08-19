@@ -1,28 +1,33 @@
 pipeline {
-  agent any
-  stages {
-    stage('Build') {
-      parallel {
-        stage('Build') {
-          steps {
-            bat 'dir'
-          }
-        }
-
-        stage('build date') {
-          steps {
-            bat 'echo %date%'
-          }
-        }
-
-      }
+    agent any
+    environment {
+        name = 'Bhupesh'
     }
-
-    stage('Test') {
-      steps {
-        echo 'Testing'
-      }
+    parameters {
+     string(name: 'Ananya',defaultValue: 'Patil', description: 'who are you ?')
     }
-
-  }
+    stages {
+        stage('Hello') {
+            steps {
+                echo 'Hello World'
+            }
+        }
+        stage('Env') {
+            input {
+                message "Are you sure"
+                ok "Yes Continue"
+            }
+            steps {
+                bat  'echo %ananya%'
+            }
+        }
+         stage('Prod') {
+            environment {
+        username = 'Prod'
+    }
+            steps {
+                bat  'echo %username%'
+            }
+        }
+    }
 }
