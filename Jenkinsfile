@@ -20,7 +20,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        bat 'echo %date%'
+        bat 'bat echo %date%'
       }
     }
 
