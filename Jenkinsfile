@@ -9,7 +9,7 @@ pipeline {
           }
         }
 
-        stage('') {
+        stage('error') {
           steps {
             sleep 5
           }
@@ -20,7 +20,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        bat 'echo date'
+        bat 'echo %date%'
       }
     }
 
